@@ -3,6 +3,8 @@
 import React from "react";
 // import { motion } from "framer-motion";
 import ParticleBackground from "../ui/ParticleBackground";
+import FrontEndFocus from "../ui/FocusEndFocus";
+// import TechStackCard from "../ui/TechStackCard";
 
 interface HeroProps {
   firstName?: string;
@@ -21,6 +23,25 @@ const Hero: React.FC<HeroProps> = ({
   introText = "California-based developer with a passion for creating dynamic, elegant and scalable solutions to complex problems. Let's build something extraordinary together.",
   tagLineText = "Building the future, one pixel at a time",
 }) => {
+  // const myTechStack = [
+  //   {
+  //     name: "React",
+  //     src: "/react-logotype-dark.svg",
+  //   },
+  //   {
+  //     name: "Next.js",
+  //     src: "/nextjs-logotype-darkBG.svg",
+  //   },
+  //   {
+  //     name: "Tailwind CSS",
+  //     src: "/tailwindcss-logotype-white.svg",
+  //   },
+  //   {
+  //     name: "Typescript",
+  //     src: "/ts-lettermark-white.svg",
+  //   },
+  // ];
+
   const handleShowProjects = () => {
     console.log("See My Work -- clicked");
   };
@@ -75,7 +96,9 @@ const Hero: React.FC<HeroProps> = ({
           </div>
 
           {/* Right Column - Visual Element */}
-          <div className="hidden lg:block relative"></div>
+          <div className="hidden lg:block relative">
+            <FrontEndFocus />
+          </div>
         </div>
       </div>
     </section>

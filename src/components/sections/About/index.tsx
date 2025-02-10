@@ -2,6 +2,7 @@
 
 import React from "react";
 import AboutIntro from "./AboutIntro";
+import AboutTimeline from "./AboutTimeline";
 
 const About: React.FC = () => {
   return (
@@ -9,6 +10,7 @@ const About: React.FC = () => {
       {/* <div className="w-full h-1 bg-gradient-to-r from-[#00ABC9] via-[#FAB917] to-[#00ABC9] opacity-30" /> */}
       {/* ABOUT INTRO SECTION */}
       <AboutIntro />
+      <AboutTimeline />
     </section>
   );
 };

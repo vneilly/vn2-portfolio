@@ -1,16 +1,36 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import TimelineCard, { TimelineCardProps } from "./TimeLineCard";
+import TimelineCard, { TimelineCardData } from "./TimeLineCard";
 
-const VERNON_EMPLOYMENT_DATA: TimelineCardProps[] = [
+const TECHNOLOGIES = {
+  react: "REACT",
+  web: "WEBPACK",
+  next: "NEXT.JS",
+  zust: "ZUSTAND",
+  rdx: "REDUX",
+  tw: "TAILWIND CSS",
+  vue: "VUE.JS",
+  vx: "VUEX",
+  node: "NODE.JS",
+  ts: "TYPESCRIPT",
+  sb: "STORYBOOK",
+  py: "PYTHON",
+  amz: "AWS",
+  sql: "MySQL",
+};
+
+const VERNON_EMPLOYMENT_DATA: TimelineCardData[] = [
   {
     id: 1,
     year: "2023",
     company: "Somos, Inc",
     role: "Software Developer II",
     side: "left",
+    technologies: [],
+    highlights: "",
+    achievements: [""],
   },
   {
     id: 2,
@@ -18,6 +38,9 @@ const VERNON_EMPLOYMENT_DATA: TimelineCardProps[] = [
     company: "Achieve / Freedom Financial Network",
     role: "Frontend Software Engineer",
     side: "right",
+    technologies: [""],
+    highlights: "",
+    achievements: [""],
   },
   {
     id: 3,
@@ -25,6 +48,9 @@ const VERNON_EMPLOYMENT_DATA: TimelineCardProps[] = [
     company: "Channel Bakers",
     role: "Frontend Engineer",
     side: "left",
+    technologies: [""],
+    highlights: "",
+    achievements: [""],
   },
   {
     id: 4,
@@ -32,6 +58,9 @@ const VERNON_EMPLOYMENT_DATA: TimelineCardProps[] = [
     company: "Aquent / Jet Propulsion Laboratories",
     role: "Frontend Developer",
     side: "right",
+    technologies: [""],
+    highlights: "",
+    achievements: [""],
   },
   {
     id: 5,
@@ -39,10 +68,19 @@ const VERNON_EMPLOYMENT_DATA: TimelineCardProps[] = [
     company: "Yamaha Music USA",
     role: "Web Developer",
     side: "left",
+    technologies: [""],
+    highlights: "",
+    achievements: [""],
   },
 ];
 
 const AboutTimeline: React.FC = ({}) => {
+  const [activeCardId, setActiveCardId] = useState<number | null>(null);
+
+  const handleEmploymentCardClick = (id: number) => {
+    setActiveCardId(activeCardId === id ? null : id);
+  };
+
   return (
     <div className="w-full py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,11 +112,9 @@ const AboutTimeline: React.FC = ({}) => {
               >
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full bg-[#00ABC9] ring-4 ring-[#0A192F] border border-[#00ABC9]/50 shadow-md" />
                 <TimelineCard
-                  id={item.id}
-                  company={item.company}
-                  role={item.role}
-                  year={item.year}
-                  side={item.side}
+                  {...item}
+                  isExpanded={activeCardId === item.id}
+                  onToggle={() => handleEmploymentCardClick(item.id)}
                 />
               </div>
             ))}

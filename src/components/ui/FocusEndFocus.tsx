@@ -4,11 +4,14 @@ import { motion } from "framer-motion";
 
 import React from "react";
 import Image from "next/image";
+import { IconType } from "react-icons";
+import { SiNextdotjs, SiTypescript, SiTailwindcss } from "react-icons/si";
 
 interface FocusNodeProps {
   title: string;
   description: string;
-  logo: string;
+  logo?: string;
+  icon?: IconType;
   altText: string;
   logoWidth?: number;
   logoHeight?: number;
@@ -18,6 +21,7 @@ const FocusNode: React.FC<FocusNodeProps> = ({
   title,
   description,
   logo,
+  icon: Icon,
   altText,
   logoWidth = 120,
   logoHeight = 40,
@@ -32,17 +36,21 @@ const FocusNode: React.FC<FocusNodeProps> = ({
     >
       <div className="flex flex-col items-center gap-4 mb-3">
         <div className="relative w-full flex justify-center items-center h-12">
-          <Image
-            src={logo}
-            alt={altText}
-            width={logoWidth}
-            height={logoHeight}
-            className="object-contain"
-            style={{
-              width: "auto",
-              height: "auto",
-            }}
-          />
+          {Icon ? (
+            <Icon size={logoHeight} className="text-white" />
+          ) : logo ? (
+            <Image
+              src={logo}
+              alt={altText}
+              width={logoWidth}
+              height={logoHeight}
+              className="object-contain"
+              style={{
+                width: "auto",
+                height: "auto",
+              }}
+            />
+          ) : null}
         </div>
         <div className="text-center">
           <h3 className="text-lg font-semibold text-white">{title}</h3>
@@ -96,7 +104,7 @@ const FrontEndFocus: React.FC = () => {
           <FocusNode
             title="Modern Frontend"
             description="Building scalable applications with Next.js and React"
-            logo="/nextjs-logotype-darkBg.svg"
+            icon={SiNextdotjs}
             altText="Next.js logo"
           />
         </div>
@@ -105,10 +113,8 @@ const FrontEndFocus: React.FC = () => {
           <FocusNode
             title="Type-Safe Development"
             description="Writing robust bug free code with TypeScript"
-            logo="/ts-lettermark-white.svg"
             altText="TypeScript logo"
-            logoWidth={100}
-            logoHeight={40}
+            icon={SiTypescript}
           />
         </div>
 
@@ -116,10 +122,8 @@ const FrontEndFocus: React.FC = () => {
           <FocusNode
             title="Latest UI Styling"
             description="Creating responsive designs with Tailwind CSS"
-            logo="/tailwindcss-logotype-white.svg"
+            icon={SiTailwindcss}
             altText="Tailwind CSS logo"
-            logoWidth={140}
-            logoHeight={40}
           />
         </div>
       </div>

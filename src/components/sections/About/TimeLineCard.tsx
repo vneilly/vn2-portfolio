@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
-import { ChevronRightIcon } from "@heroicons/react/24/solid";
+import { FiChevronRight } from "react-icons/fi";
 
 export interface TimelineCardData {
   id: number;
@@ -73,7 +73,7 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
                       className="text-gray-300 text-sm flex items-start"
                       key={index}
                     >
-                      <ChevronRightIcon className="w-3 h-3 text-[#00ABC9] mr-2, mt-1" />
+                      <FiChevronRight className="w-3 h-3 text-[#00ABC9] mr-2, mt-1" />
                       {item}
                     </li>
                   ))}

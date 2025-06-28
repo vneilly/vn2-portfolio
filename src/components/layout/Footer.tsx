@@ -1,12 +1,13 @@
 "use client";
 
 import React, { JSX } from "react";
+import { FiMail as Mail } from "react-icons/fi";
+
 import {
-  EnvelopeIcon as Mail,
-  CodeBracketIcon as Code,
-  UserCircleIcon as LinkedIn,
-  PhotoIcon as Instagram,
-} from "@heroicons/react/24/outline";
+  SiGithub as GitHub,
+  SiLinkedin as LinkedIn,
+  SiInstagram as Instagram,
+} from "react-icons/si";
 
 type BaseLink = {
   href: string;
@@ -33,7 +34,7 @@ const Footer: React.FC<FooterProps> = ({
 
   const socialLinks: readonly SocialLink[] = [
     {
-      icon: <Code className={ICON_CLASSES} />,
+      icon: <GitHub className={ICON_CLASSES} />,
       href: "https://github.com/vneilly",
       label: "Github",
     },

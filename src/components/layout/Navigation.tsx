@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion, useScroll, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { Bars3Icon as Menu, XMarkIcon as X } from "@heroicons/react/16/solid";
+import { FiMenu as Menu, FiX as X } from "react-icons/fi";
 
 type NavLink = {
   href: string;

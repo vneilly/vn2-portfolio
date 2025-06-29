@@ -1,16 +1,33 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import TimelineCard, { TimelineCardProps } from "./TimeLineCard";
+import TimelineCard, { TimelineCardData } from "./TimeLineCard";
+import { TECHNOLOGIES } from "@/components/sections/TechStack/data";
 
-const VERNON_EMPLOYMENT_DATA: TimelineCardProps[] = [
+const VERNON_EMPLOYMENT_DATA: TimelineCardData[] = [
   {
     id: 1,
     year: "2023",
     company: "Somos, Inc",
     role: "Software Developer II",
     side: "left",
+    technologies: [
+      TECHNOLOGIES.react,
+      TECHNOLOGIES.next,
+      TECHNOLOGIES.ts,
+      TECHNOLOGIES.node,
+      TECHNOLOGIES.tw,
+      TECHNOLOGIES.sql,
+      TECHNOLOGIES.zust,
+      TECHNOLOGIES.sb,
+    ],
+    highlights:
+      "Led frontend app modernization efforts at Somos, Inc., and played a key role in transitioning a legacy AngularJS app to a Micro-Frontend (MFE) architecture using Webpack Module Federation, Next.js/React, Typescript, Tailwind CSS and Zustand and React Context API for statemanagement.",
+    achievements: [
+      "Developed and launched a reusable component library using TS, Tailwind CSS and utilizing Storybook to increase UI consistency and improving development velocity by 15%.",
+      "Collaborated cross-functionally to optimize frontend performance and refactor legacy features while setting team development patterns and guidelines for other developers less familiar with the React.js framework.",
+    ],
   },
   {
     id: 2,
@@ -18,6 +35,20 @@ const VERNON_EMPLOYMENT_DATA: TimelineCardProps[] = [
     company: "Achieve / Freedom Financial Network",
     role: "Frontend Software Engineer",
     side: "right",
+    technologies: [
+      TECHNOLOGIES.react,
+      TECHNOLOGIES.rdx,
+      TECHNOLOGIES.node,
+      TECHNOLOGIES.sql,
+      TECHNOLOGIES.sb,
+    ],
+    highlights:
+      "Redesigned and shipped core features for the Loan Origination Portal (LOP) product, helping users manage home equity loans for high-interest debt consolidation. Worked with a cross-functional team to implement secure, scalable solutions using React, Redux Toolkit, Node.js, MySql, and Contentful.",
+    achievements: [
+      "Increased test coverage of LOP app from 63% to 85%, improving reliability and reducing bugs by implementing RTL and Jest.",
+      "Built and maintained Redux Toolkit slices for scalable state management and cleaner app logic across key LOP flows.",
+      "Implemented secure OAuth login and signup using Node.js, Express, JWT, and Passport.js, which streamlined user sign-in and enhanced platform security.",
+    ],
   },
   {
     id: 3,
@@ -25,6 +56,18 @@ const VERNON_EMPLOYMENT_DATA: TimelineCardProps[] = [
     company: "Channel Bakers",
     role: "Frontend Engineer",
     side: "left",
+    technologies: [
+      TECHNOLOGIES.react,
+      TECHNOLOGIES.rdx,
+      TECHNOLOGIES.amz,
+      TECHNOLOGIES.ts,
+    ],
+    highlights:
+      "Contributed to development of Channel Bakers’ “Visibly” Amazon Marketing platform by building performant, reusable React.js components and integrating Highcharts for campaign data visualization. Implemented route-based code splitting and lazy loading to optimize the UI for large data sets from Amazon API’s.",
+    achievements: [
+      "Led front-end refactors to improve modularity and reusability of shared UI components, streamlining development workflows and reducing duplication across marketing campaign views.",
+      "Collaborated with backend engineers to define API contracts to ensure seamless integration between UI visualizations and Amazon ad data pipelines.",
+    ],
   },
   {
     id: 4,
@@ -32,6 +75,13 @@ const VERNON_EMPLOYMENT_DATA: TimelineCardProps[] = [
     company: "Aquent / Jet Propulsion Laboratories",
     role: "Frontend Developer",
     side: "right",
+    technologies: [TECHNOLOGIES.vue, TECHNOLOGIES.ts],
+    highlights:
+      "Contracted Front-End Developer within NASA’s Jet Propulsion Laboratory Communications Department, working on internal and public-facing web portal focused on educational outreach, scientific content, and institutional communication using HTML, CSS, JavaScript and the Vue.js/Nuxt frameworks.",
+    achievements: [
+      "Delivered production-ready, SEO-optimized templates and layouts, improving cross-device responsiveness and information clarity for mission-critical internal teams and public scientific outreach.",
+      "Redesigned and updated dozens of content-rich pages reducing load times by optimizing SSG using Nuxt Html static page pre-rendering and utilizing asyncData so the content was baked into the generated static Html.",
+    ],
   },
   {
     id: 5,
@@ -39,10 +89,30 @@ const VERNON_EMPLOYMENT_DATA: TimelineCardProps[] = [
     company: "Yamaha Music USA",
     role: "Web Developer",
     side: "left",
+    technologies: [
+      TECHNOLOGIES.js,
+      TECHNOLOGIES.jq,
+      TECHNOLOGIES.html,
+      TECHNOLOGIES.css,
+      TECHNOLOGIES.ang,
+    ],
+    highlights:
+      "Focused on building and maintaining high-visibility consumer facing e-commerce landing pages for products and promotional campaigns under the usa.yamaha.com domain.",
+    achievements: [
+      "Introduced reusable templates and front-end patterns using Handlebars.js to improve team dev velocity, with wins in time-to-launch for campaigns and content delivery and consistency across the digital brand.",
+      "Developed custom UI components and product landing pages using vanilla JavaScript, jQuery, and AJAX, interfacing directly with SDL Tridion CMS to support eight separate product marketing departments and streamline campaign and content delivery.",
+      "Created and maintained a custom-built, in-house CMS for managing product pages, content, and media assets, which improved content management efficiency and reduced reliance on external systems.",
+    ],
   },
 ];
 
 const AboutTimeline: React.FC = ({}) => {
+  const [activeCardId, setActiveCardId] = useState<number | null>(null);
+
+  const handleEmploymentCardClick = (id: number) => {
+    setActiveCardId(activeCardId === id ? null : id);
+  };
+
   return (
     <div className="w-full py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,11 +144,9 @@ const AboutTimeline: React.FC = ({}) => {
               >
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full bg-[#00ABC9] ring-4 ring-[#0A192F] border border-[#00ABC9]/50 shadow-md" />
                 <TimelineCard
-                  id={item.id}
-                  company={item.company}
-                  role={item.role}
-                  year={item.year}
-                  side={item.side}
+                  {...item}
+                  isExpanded={activeCardId === item.id}
+                  onToggle={() => handleEmploymentCardClick(item.id)}
                 />
               </div>
             ))}

@@ -3,6 +3,7 @@
 import React from "react";
 import AboutIntro from "./AboutIntro";
 import AboutTimeline from "./AboutTimeline";
+import TechStackGrid from "../TechStack";
 
 const About: React.FC = () => {
   return (
@@ -11,6 +12,8 @@ const About: React.FC = () => {
       {/* ABOUT INTRO SECTION */}
       <AboutIntro />
       <AboutTimeline />
+
+      <TechStackGrid />
     </section>
   );
 };
